@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
-# 1. Trap early (so it works anytime)
+# 1. Input
+read -p "Enter an input: " input
+
+# 2. Trap early (so it works anytime)
 trap '
 echo "Interrupted! Cleaning up..."
 
@@ -13,9 +16,6 @@ fi
 
 exit
 ' SIGINT
-
-# 2. Input
-read -p "Enter an input: " input
 
 # 3. Directory architecture
 
