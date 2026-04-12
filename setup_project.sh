@@ -2,9 +2,15 @@
 
 # 1. Trap early (so it works anytime)
 trap '
-echo "Interrupted! Cleaning up...";
-tar -czf attendance_tracker_${input}_archive attendance_tracker_${input};
-rm -rf attendance_tracker_${input};
+echo "Interrupted! Cleaning up..."
+
+if [ -d "attendance_tracker_${input}" ]; then
+	tar -czf attendance_tracker_${input}_archive attendance_tracker_${input}
+	rm -rf attendance_tracker_${input}
+else 
+	echo "No project folder to archive"
+fi 
+
 exit
 ' SIGINT
 
