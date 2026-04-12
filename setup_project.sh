@@ -5,9 +5,9 @@ read -p "Enter an input: " input
 
 # 2. Trap early (so it works anytime)
 trap '
-echo "Interrupted! Cleaning up..."
-tar -czf attendance_tracker_${input}_archive attendance_tracker_${input}
-rm -rf attendance_tracker_${input}
+echo "Interrupted! Cleaning up...";
+tar -czf attendance_tracker_${input}_archive attendance_tracker_${input};
+rm -rf attendance_tracker_${input};
 exit
 ' SIGINT
 
