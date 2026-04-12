@@ -49,6 +49,7 @@ The script checks if Python3 is installed on the system and prints a message dep
 ## How to Run
 
 chmod +x setup_project.sh
+
 ./setup_project.sh
 
 ---
