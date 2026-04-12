@@ -48,13 +48,6 @@ The script checks if Python3 is installed on the system and prints a message dep
 
 ## How to Run
 
-## How to Run
-
 ```bash
 chmod +x setup_project.sh
-./setup_project.sh
-
----
-
-## How to Test Trap
-Run the script and press Ctrl + C while it is running to see the cleanup and archive process work.
+./setup_project.sh```
