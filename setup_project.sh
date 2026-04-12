@@ -6,11 +6,8 @@ read -p "Enter an input: " input
 # 2. Trap early (so it works anytime)
 trap '
 echo "Interrupted! Cleaning up..."
-
 tar -czf attendance_tracker_${input}_archive attendance_tracker_${input}
-
 rm -rf attendance_tracker_${input}
-
 exit
 ' SIGINT
 
@@ -34,14 +31,14 @@ cp ../project/reports.log reports/
 
 # 5. Dynamic Configuration
 
-read -p "Do you want to update thresholds? (yes/no)" answer
+read -p "Do you want to update thresholds? (yes/no): " answer
 
 if [ "$answer" = "yes" ]; then
 	read -p "Enter your new warning value: " warning_value
 	read -p "Enter your new failure value: " failure_value
 
-	sed -i "s/warning/${warning_value}/" Helpers/config.json
-	sed -i "s/failure/${failure_value}/" Helpers/config.json
+	sed -i "s/75/${warning_value}/" Helpers/config.json
+	sed -i "s/50/${failure_value}/" Helpers/config.json
 fi
 
 

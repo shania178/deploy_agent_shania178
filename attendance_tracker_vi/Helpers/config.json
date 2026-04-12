@@ -1,0 +1,9 @@
+{
+    "thresholds": {
+        "30": 75,
+        "23": 50
+    },
+    "run_mode": "live",
+    "total_sessions": 15
+}
+
