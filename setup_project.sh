@@ -3,16 +3,33 @@
 # 1. Input
 read -p "Enter an input: " input
 
-#2. Directory architecture
+# 2. Directory architecture
 
 mkdir attendance_tracker_${input}
+
+# 3. Trap
+trap '
+echo "Interrupted! Cleaning up..."
+cd ..
+
+if [ -d "attendance_tracker_${input}" ]; then
+        tar -czf "attendance_tracker_${input}_archive" "attendance_tracker_${input}"
+        rm -rf "attendance_tracker_${input}"
+else
+        echo "No project folder to archive"
+fi
+
+exit
+' SIGINT
+
+# 4. Directory architecrure continue
 
 cd attendance_tracker_${input}
 
 mkdir Helpers reports
 
 
-# 3. Copy files
+# 5. Copy files
 
 cp ../project/attendance_checker.py .
 cp ../project/assets.csv Helpers/
@@ -20,7 +37,7 @@ cp ../project/config.json Helpers/
 cp ../project/reports.log reports/
 
 
-# 4. Dynamic Configuration
+# 6. Dynamic Configuration
 
 read -p "Do you want to update thresholds? (yes/no): " answer
 
@@ -31,24 +48,10 @@ if [ "$answer" = "yes" ]; then
 	sed -i "s/75/${warning_value}/" Helpers/config.json
 	sed -i "s/50/${failure_value}/" Helpers/config.json
 else 
-	echo "Default thresholds. No change made"
+	echo "Default thresholds. No change made."
 fi
 
-# 5. Trap 
-trap '
-echo "Interrupted! Cleaning up..."
-
-if [ -d "attendance_tracker_${input}" ]; then
-        tar -czf "attendance_tracker_${input}_archive" "attendance_tracker_${input}"
-        rm -rf attendance_tracker_${input}
-else
-        echo "No project folder to archive"
-fi
-
-exit
-' SIGINT
-
-# 6. Environment Validation
+# 7. Environment Validation
 
 echo "Checking Python installation..."
 
