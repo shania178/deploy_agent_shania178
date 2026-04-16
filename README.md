@@ -6,6 +6,12 @@ It sets up folders, copies required files, updates configuration values, and han
 
 ---
 
+## Video Link
+
+https://youtu.be/loYEp5k3iuc
+
+---
+
 ## 1. Directory Setup
 The script creates a folder based on user input called:
 attendance_tracker_{input}
